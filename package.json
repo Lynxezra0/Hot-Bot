@@ -1,5 +1,5 @@
 {
-  "name": "Bwmxmd",
+  "name": "hotbot",
   "version": "2.1.0",
   "description": "Advanced WhatsApp bot using Baileys",
   "main": "index.js",
@@ -19,10 +19,9 @@
   "keywords": [
     "bot",
     "Baileys",
-    "bmwxmd",
-    "quantum",
-    "whatsapp-bot",
-    "Ibrahim-Adams"
+    "hotbot",
+    "ironwolf",
+    "whatsapp-bot"
   ],
   "author": "Ibrahim Adams",
   "license": "ISC",

@@ -1,0 +1,48 @@
+
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Environment files
+config.env
+.env
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+Icon?
+
+# Logs
+logs/
+*.log
+
+# VSCode
+.vscode/
+
+# Build and deployment
+dist/
+build/
+tmp/
+temp/
+.cache/
+
+# Heroku
+.heroku/
+
+# Misc
+*.swp
+*.swo
+*.bak
+*.tmp
+*.pid
+
+# Project specific
+bwmxmd/creds.json
+Procfile
+adams/index.html
