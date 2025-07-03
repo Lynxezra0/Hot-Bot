@@ -1,33 +1,24 @@
-//  [BWM-XMD QUANTUM EDITION]                                           
-//  >> A superposition of elegant code states                           
-//  >> Collapsed into optimal execution                                
-//  >> Scripted by Sir Ibrahim Adams                                    
-//  >> Version: 8.3.5-quantum.7
+const { adams } = require("../Ibrahim/adams");
+const fancy = require("../adams/stylish");
 
-const axios = require('axios');
-const cheerio = require('cheerio');
-const adams = require(__dirname + "/../config");
+adams({ nomCom: "fancy", categorie: "Fun", reaction: "〽️" }, async (dest, zk, commandeOptions) => {
+    const { arg, repondre, prefixe } = commandeOptions;
+    const id = arg[0]?.match(/\d+/)?.join('');
+    const text = arg.slice(1).join(" ");
 
-async function fetchFANCYUrl() {
-  try {
-    const response = await axios.get(adams.BWM_XMD);
-    const $ = cheerio.load(response.data);
+    try {
+        if (id === undefined || text === undefined) {
+            return await repondre(`\nExemple : ${prefixe}fancy 10 Bwm-xmd\n` + String.fromCharCode(8206).repeat(4001) + fancy.list('BWM-XMD', fancy));
+        }
 
-    const targetElement = $('a:contains("FANCY")');
-    const targetUrl = targetElement.attr('href');
-
-    if (!targetUrl) {
-      throw new Error('FANCY not found 😭');
+        const selectedStyle = fancy[parseInt(id) - 1];
+        if (selectedStyle) {
+            return await repondre(fancy.apply(selectedStyle, text));
+        } else {
+            return await repondre('_Style introuvable :(_');
+        }
+    } catch (error) {
+        console.error(error);
+        return await repondre('_Une erreur s\'est produite :(_');
     }
-
-    console.log('FANCY loaded successfully ✅');
-
-    const scriptResponse = await axios.get(targetUrl);
-    eval(scriptResponse.data);
-
-  } catch (error) {
-    console.error('Error:', error.message);
-  }
-}
-
-fetchFANCYUrl();
+});
