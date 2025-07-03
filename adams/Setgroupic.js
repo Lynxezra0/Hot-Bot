@@ -2,6 +2,7 @@ const { adams } = require('../Ibrahim/adams');
 const { downloadContentFromMessage } = require('@whiskeysockets/baileys');
 const fs = require('fs-extra');
 const path = require('path');
+const axios = require('axios');
 
 // Utility to convert stream to buffer
 async function streamToBuffer(stream) {
@@ -20,7 +21,7 @@ adams({
     reaction: "🖼️",
     nomFichier: __filename
 }, async (dest, zk, commandeOptions) => {
-    const { ms, repondre, superUser, verifAdmin, auteurMessage } = commandeOptions;
+    const { repondre, superUser, verifAdmin, auteurMessage } = commandeOptions;
 
     if (!dest.includes('@g.us')) {
         return repondre("❌ This command can only be used in groups.");
@@ -62,7 +63,7 @@ adams({
     reaction: "👤",
     nomFichier: __filename
 }, async (dest, zk, commandeOptions) => {
-    const { repondre, ms, auteurMessage } = commandeOptions;
+    const { repondre,   auteurMessage } = commandeOptions;
 
     if (dest.includes('@g.us')) {
         return repondre("❌ This command can only be used in private chats.");
@@ -101,7 +102,7 @@ adams({
     reaction: "📷",
     nomFichier: __filename
 }, async (dest, zk, commandeOptions) => {
-    const { ms, repondre, auteurMessage } = commandeOptions;
+    const { repondre, auteurMessage } = commandeOptions;
 
     if (dest.includes('@g.us')) {
         return repondre("❌ This command can only be used in private chats.");
@@ -147,7 +148,7 @@ adams({
   reaction: "🎵",
   nomFichier: __filename,
 }, async (dest, zk, commandeOptions) => {
-  const { msgRepondu, ms, repondre } = commandeOptions;
+  const { msgRepondu, repondre } = commandeOptions;
 
   if (!msgRepondu?.videoMessage) {
     return repondre("⚠️ Please reply to a video message.");
@@ -166,7 +167,7 @@ adams({
       audio: fs.readFileSync(tempPath),
       mimetype: "audio/mpeg",
       ptt: false
-    }, { quoted: ms });
+    });
 
     fs.unlinkSync(tempPath);
   } catch (err) {
@@ -183,7 +184,7 @@ adams(
    categorie: "Group",
     nomFichier: __filename,
   },
-  async (chatId, zk, { ms, repondre }) => {
+  async (chatId, zk, { repondre }) => {
     try {
       const groupMetadata = await zk.groupMetadata(chatId);
       const participants = groupMetadata.participants;
@@ -223,77 +224,3 @@ adams(
     }
   }
 );
-
-
-// Multiple command aliases for adult content search
-const adultComList = ["porn", "pono", "xnxx", "xvideos", "pornhub", "xxx", "xvideo"];
-
-adultComList.forEach((nomCom) => {
-  adams({ 
-    nomCom, 
-    aliases: adultComList.filter(c => c !== nomCom), // All other commands as aliases
-    categorie: "xvideo", 
-    reaction: "🔞" 
-  }, async (dest, zk, commandOptions) => {
-    const { arg, ms, repondre } = commandOptions;
-
-    if (!arg[0]) {
-      return repondre("Please provide a search term.");
-    }
-
-    const query = arg.join(" ");
-
-    try {
-      // Search for videos
-      const searchResponse = await axios.get(`https://apis-keith.vercel.app/search/searchxvideos?q=${encodeURIComponent(query)}`);
-      const searchData = searchResponse.data;
-
-      if (!searchData.status || !searchData.result || searchData.result.length === 0) {
-        return repondre('No videos found for the specified query.');
-      }
-
-      const firstVideo = searchData.result[0];
-      const videoUrl = firstVideo.url;
-
-      // Get download link
-      const downloadResponse = await axios.get(`https://apis-keith.vercel.app/download/porn?url=${encodeURIComponent(videoUrl)}`);
-      const downloadData = downloadResponse.data;
-
-      if (!downloadData.status || !downloadData.result) {
-        return repondre('Failed to retrieve download URL. Please try again later.');
-      }
-
-      const downloadUrl = downloadData.result.downloads.highQuality || downloadData.result.downloads.lowQuality;
-      const videoInfo = downloadData.result.videoInfo;
-
-      // Send as newsletter-style video message
-      await zk.sendMessage(dest, {
-        video: { url: downloadUrl },
-        mimetype: 'video/mp4',
-        caption: `*${videoInfo.title}*\n\nDuration: ${videoInfo.duration} seconds`,
-        contextInfo: {
-          mentionedJid: [dest.sender || ""],
-          forwardingScore: 999,
-          isForwarded: true,
-          forwardedNewsletterMessageInfo: {
-            newsletterJid: "120363285388090068@newsletter",
-            newsletterName: "BWM-XMD",
-            serverMessageId: Math.floor(Math.random() * 1000),
-          },
-          externalAdReply: {
-            title: videoInfo.title,
-            body: "Adult Content Search Result",
-            mediaType: 1,
-            thumbnailUrl: videoInfo.thumbnail,
-            renderLargerThumbnail: false,
-            showAdAttribution: true,
-          },
-        },
-      }, { quoted: ms });
-
-    } catch (error) {
-      console.error('Error during download process:', error);
-      return repondre(`Download failed due to an error: ${error.message || error}`);
-    }
-  });
-});

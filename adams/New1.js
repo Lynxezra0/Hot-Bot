@@ -19,7 +19,7 @@ const menuImages = [
     "https://bwm-xmd-files.vercel.app/bwmxmd5.jpeg",
 ];
 const randomImage = () => menuImages[Math.floor(Math.random() * menuImages.length)];
-const footer = `\n\n©Sir Ibrahim Adams\n\n╭━===========================\n┃  ᴛᴏ sᴇᴇ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs ᴛᴏɢᴇᴛʜᴇʀ ᴜsᴇ\n┃ *${PREFIX} Cmds*\n┃ *${PREFIX} Help*\n┃ *${PREFIX} list*\n┃ *${PREFIX} Commands* \n╰━===========================\n\n*For business use this*\nhttps://business.bwmxmd.online\n\n®2025 ʙᴡᴍ xᴍᴅ 🔥`;
+const footer = `\n\nLynx\n\n╭━===========================\n┃  ᴛᴏ sᴇᴇ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs ᴛᴏɢᴇᴛʜᴇʀ ᴜsᴇ\n┃ *${PREFIX} Cmds*\n┃ *${PREFIX} Help*\n┃ *${PREFIX} list*\n┃ *${PREFIX} Commands* \n╰━===========================\n\n🔥`;
 
 // GitHub repo stats - Updated with correct repo path
 const fetchGitHubStats = async () => {
@@ -95,12 +95,10 @@ adams({ nomCom: "menu2", categorie: "General" }, async (dest, zk, commandeOption
         "🌍 GENERAL MENU": ["GENERAL", "MODS", "UTILITY", "MEDIA", "TRADE"],
         "👨‍👨‍👦‍👦 GROUP MENU": ["GROUP"],
         "💻 BOT_INFO MENU": ["GITHUB", "USER", "PAIR"],
-        "🔞 ADULT MENU": ["XVIDEO"],
     };
 
     // Send Main Menu as Quote Reply with Random Image
     const sentMessage = await zk.sendMessage(dest, {
-        image: { url: image },
         caption: `
 ┌─❖
 │ 𝐁𝐖𝐌 𝐗𝐌𝐃    
@@ -113,7 +111,7 @@ adams({ nomCom: "menu2", categorie: "General" }, async (dest, zk, commandeOption
 │👥 ʙᴡᴍ ᴜsᴇʀs: ${totalUsers}        
 └────────────────┈⳹ 
 
-> ©Ibrahim Adams
+> ©Lynx
 
 ${readMore}
 
@@ -125,11 +123,6 @@ ${Object.keys(categoryGroups).map((cat, index) => `${index + 1} ${cat}`).join("\
             mentionedJid: [sender ? `${sender}@s.whatsapp.net` : undefined].filter(Boolean),
             forwardingScore: 999,
             isForwarded: true,
-            forwardedNewsletterMessageInfo: {
-                newsletterJid: "120363285388090068@newsletter",
-                newsletterName: "BWM-XMD",
-                serverMessageId: Math.floor(100000 + Math.random() * 900000),
-            },
         },
     }, { quoted: contactMsg });
 
@@ -169,43 +162,9 @@ ${Object.keys(categoryGroups).map((cat, index) => `${index + 1} ${cat}`).join("\
                     mentionedJid: [sender ? `${sender}@s.whatsapp.net` : undefined].filter(Boolean),
                     forwardingScore: 999,
                     isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: "120363285388090068@newsletter",
-                        newsletterName: "BWM-XMD",
-                        serverMessageId: Math.floor(100000 + Math.random() * 900000),
-                    },
                 },
             }, { quoted: contactMsg });
         }
     });
 
-    // Send Random Audio
-    const audioUrl = `${githubRawBaseUrl}/${getRandomAudio()}`;
-    await zk.sendMessage(dest, {
-        audio: { url: audioUrl },
-        mimetype: "audio/mpeg",
-        ptt: true,
-        contextInfo: {
-            mentionedJid: [sender ? `${sender}@s.whatsapp.net` : undefined].filter(Boolean),
-            forwardingScore: 999,
-            isForwarded: true,
-            forwardedNewsletterMessageInfo: {
-                newsletterJid: "120363285388090068@newsletter",
-                newsletterName: "BWM-XMD",
-                serverMessageId: Math.floor(100000 + Math.random() * 900000),
-            },
-        },
-    }, { 
-        quoted: {
-            key: {
-                remoteJid: ms.key.remoteJid,
-                fromMe: ms.key.fromMe,
-                id: ms.key.id,
-                participant: ms.key.participant
-            },
-            message: {
-                conversation: "🚀 𝐐𝐔𝐀𝐍𝐓𝐔𝐌 𝐕𝐄𝐑𝐒𝐈𝐎𝐍 🚀"
-            }
-        }
-    });
 });

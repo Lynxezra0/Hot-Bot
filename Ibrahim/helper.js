@@ -1,6 +1,6 @@
-const NEWS_LETTER_JID = "120363285388090068@newsletter"; // Replace with your real one
-const BOT_NAME = "BWM-XMD";
-const DEFAULT_THUMBNAIL = "https://files.catbox.moe/sd49da.jpg";
+const NEWS_LETTER_JID = process.env.WA_CHANEL || null; // Replace with your real one
+const BOT_NAME = process.env.BOT_NAME || "HOT BOT"; // Default bot name if not set
+const DEFAULT_THUMBNAIL = process.env.DEFAULT_THUMBNAIL || null;
 
 const createContext = (userJid, options = {}) => ({
     contextInfo: {

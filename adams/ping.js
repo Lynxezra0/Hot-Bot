@@ -5,10 +5,6 @@ const { adams } = require("../Ibrahim/adams");
 
 // Constants
 const BOT_START_TIME = Date.now();
-const NEWSLETTER_INFO = {
-  jid: "120363285388090068@newsletter",
-  name: "🌐 Bwm xmd Core System"
-};
 const TECH_EMOJIS = ["🚀", "⚡", "🔋", "💻", "🔌", "🌐", "📶", "🖥️", "🔍", "📊"];
 
 // Helper functions
@@ -63,18 +59,15 @@ adams(
             `└ Load: ${serverLoad}%\n\n` +
             `🌐 Routing: Automatic Optimization\n` +
             `🖥️ Server: Core-${Math.floor(1000 + Math.random() * 9000)}\n` +
-            `▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n` +
-            `*${NEWSLETTER_INFO.name}* • ${getSystemTime()}`,
+            `▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n`,
       contextInfo: {
         forwardingScore: 999,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: NEWSLETTER_INFO.jid,
-          newsletterName: NEWSLETTER_INFO.name,
           serverMessageId: Math.floor(100000 + Math.random() * 900000)
         }
       }
-    }, { quoted: ms });
+    });
   }
 );
 
@@ -101,18 +94,15 @@ adams(
             `├ Stability: ${Math.floor(90 + Math.random() * 9)}%\n` +
             `└ Nodes: Global Distribution\n\n` +
             `🔋 Maintenance: Auto-Scheduled\n` +
-            `▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n` +
-            `*${NEWSLETTER_INFO.name}* • ${getSystemTime()}`,
+            `▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n`,
       contextInfo: {
         forwardingScore: 999,
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
-          newsletterJid: NEWSLETTER_INFO.jid,
-          newsletterName: NEWSLETTER_INFO.name,
           serverMessageId: Math.floor(100000 + Math.random() * 900000)
         }
       }
-    }, { quoted: ms });
+    });
   }
 );
 

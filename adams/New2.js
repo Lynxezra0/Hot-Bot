@@ -3,7 +3,7 @@ const s = require("../config");
 
 // Helper function for common settings commands
 async function handleSettingCommand(commandeOptions, settingName, settingKey, responses = {}) {
-  const { repondre, arg, ms, superUser } = commandeOptions;
+  const { repondre, arg, superUser } = commandeOptions;
   
   if (!superUser) {
     return repondre(`*This command is restricted to the bot owner or Lucky owner.*`);

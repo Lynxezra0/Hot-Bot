@@ -1,14 +1,14 @@
 
 // utils/contextManager.js
-const NEWS_LETTER_JID = "120363285388090068@newsletter";
-const BOT_NAME = "BWM-XMD";
+const NEWS_LETTER_JID = process.env.WA_CHANEL || null; // Replace with your real one
+const BOT_NAME = process.env.BOT_NAME || "HOT BOT"; // Default bot name if not set
 const thumbnails = [
                 "https://files.catbox.moe/165qf7.jpg",
                 "https://files.catbox.moe/24j10y.jpeg"
             ];
 
             // Select a random thumbnail
-            const DEFAULT_THUMBNAIL = thumbnails[Math.floor(Math.random() * thumbnails.length)];
+            const DEFAULT_THUMBNAIL = process.env.DEFAULT_THUMBNAIL || thumbnails[Math.floor(Math.random() * thumbnails.length)];
 
 const createContext2 = (userJid, options = {}) => ({
     contextInfo: {

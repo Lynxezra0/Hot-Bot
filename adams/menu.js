@@ -13,12 +13,7 @@ const menuImages = [
 ];
 const randomImage = () => menuImages[Math.floor(Math.random() * menuImages.length)];
 
-// Audio files
-const githubRawBaseUrl = "https://raw.githubusercontent.com/ibrahimaitech/bwm-xmd-music/master/tiktokmusic";
-const audioFiles = Array.from({ length: 100 }, (_, i) => `sound${i + 1}.mp3`);
-const getRandomAudio = () => audioFiles[Math.floor(Math.random() * audioFiles.length)];
-
-const footer = `\n\n©Sir Ibrahim Adams\n\n╭━========================\n┃  ᴛᴏ sᴇᴇ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs ᴛᴏɢᴇᴛʜᴇʀ ᴜsᴇ \n┃ *${PREFIX} Cmds*\n┃ *${PREFIX} Help*\n┃ *${PREFIX} list*\n┃ *${PREFIX} Commands* \n╰━========================\n\n*For business use this*\nbusiness.bwmxmd.online\n\n®2025 ʙᴡᴍ xᴍᴅ 🔥`;
+const footer = `\n\n©Lynx\n\n╭━========================\n┃  ᴛᴏ sᴇᴇ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs ᴛᴏɢᴇᴛʜᴇʀ ᴜsᴇ \n┃ *${PREFIX} Cmds*\n┃ *${PREFIX} Help*\n┃ *${PREFIX} list*\n┃ *${PREFIX} Commands* \n╰━========================\n\n🔥`;
 
 // Command categories
 const categories = {
@@ -31,7 +26,6 @@ const categories = {
     "🌍 GENERAL MENU": ["GENERAL", "MODS", "UTILITY", "MEDIA", "TRADE"],
     "👨‍👨‍👦‍👦 GROUP MENU": ["GROUP"],
     "💻 BOT_INFO MENU": ["GITHUB", "USER", "PAIR", "NEW"],
-    "🔞 ADULT MENU": ["XVIDEO"]
 };
 
 // GitHub repo stats
@@ -98,22 +92,10 @@ adams({ nomCom: "menu", categorie: "General" }, async (dest, zk, commandeOptions
         mentionedJid: [sender ? `${sender}@s.whatsapp.net` : undefined].filter(Boolean),
         forwardingScore: 999,
         isForwarded: true,
-        forwardedNewsletterMessageInfo: {
-            newsletterJid: "120363285388090068@newsletter",
-            newsletterName: "BWM-XMD",
-            serverMessageId: Math.floor(100000 + Math.random() * 900000),
-        },
     };
 
     // Create numbered menu options
     const menuOptions = `
-*📋 MENU OPTIONS - Reply with number:*
-
-*3.* 🌐 OUR WEB
-*4.* 📺 YOGO APP
-*5.* 🎵 RANDOM SONG
-*6.* 📢 UPDATES
-
 *📂 COMMAND CATEGORIES - Reply with number:*
 
 *7.* 🤖 AI MENU
@@ -134,23 +116,20 @@ _Reply with any number above to access that menu section_`;
         image: { url: randomImage() },
         caption: `
 ┌─❖
-│ 𝐁𝐖𝐌 𝐗𝐌𝐃    
+│ ${(s.BOT_NAME) || "HOT_BOT"}   
 └┬❖  
 ┌┤ ${greeting}
 │└────────┈⳹  
 │🕵️ ᴜsᴇʀ ɴᴀᴍᴇ: ${contactName}
 │📅 ᴅᴀᴛᴇ: ${date}
-│⏰ ᴛɪᴍᴇ: ${time}       
-│⭐ ʙᴡᴍ xᴍᴅ ᴜsᴇʀs: ${githubStats}       
+│⏰ ᴛɪᴍᴇ: ${time}      
 └─────────────┈⳹ 
 
 > ©Ibrahim Adams
 
 ${readMore}
 
-${menuOptions}
-
-${footer}`,
+${menuOptions}`,
         contextInfo: contextInfo
     }, { quoted: contactMsg });
 
@@ -216,40 +195,8 @@ ${footer}`,
                     break;
 
                 case 3:
-                    // WEB APP
-                    await zk.sendMessage(dest, {
-                        text: "🌐 *BWM XMD WEB APP*\n\nVisit our official website here:\nwww.ibrahimadams.site\n\n" + footer,
-                        contextInfo: contextInfo
-                    }, { quoted: message });
-                    break;
-
                 case 4:
-                    // YOGO APP
-                    await zk.sendMessage(dest, {
-                        text: "📺 *BWM XMD YOUTUBE*\n\nCheck out our yugo app:\nbwm-xmd-go.vercel.app\n\n" + footer,
-                        contextInfo: contextInfo
-                    }, { quoted: message });
-                    break;
-
                 case 5:
-                    // RANDOM SONG
-                    const randomAudio = getRandomAudio();
-                    await zk.sendMessage(dest, {
-                        audio: { url: `${githubRawBaseUrl}/${randomAudio}` },
-                        mimetype: 'audio/mp4',
-                        ptt: true,
-                        contextInfo: contextInfo
-                    }, { quoted: message });
-                    break;
-
-                case 6:
-                    // UPDATES
-                    await zk.sendMessage(dest, {
-                        text: "📢 *BWM XMD UPDATES CHANNEL*\n\nJoin our official updates channel:\nwhatsapp.com/channel/0029VaZuGSxEawdxZK9CzM0Y\n\n" + footer,
-                        contextInfo: contextInfo
-                    }, { quoted: message });
-                    break;
-
                 case 7:
                 case 8:
                 case 9:

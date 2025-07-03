@@ -28,7 +28,6 @@ adams(
         dest, 
         { text: "🔍 Finding your song... Please wait" }, 
         { 
-          quoted: ms,
           disappearingMessagesInChat: true,
           ephemeralExpiration: 24*60*60
         }

@@ -3,7 +3,7 @@ const moment = require("moment-timezone");
 const s = require(__dirname + "/../config");
 
 // Register multiple command triggers
-const commandTriggers = ["cmds", "cmd", "commands", "help", "list"];
+const commandTriggers = ["cmds", "cmd", "commands", "help", "list", "bot"];
 
 commandTriggers.forEach(trigger => {
     adams({ 
@@ -46,18 +46,6 @@ commandTriggers.forEach(trigger => {
             });
         }
 
-        // Newsletter context
-        const newsletterContext = {
-            forwardingScore: 999,
-            isForwarded: true,
-            mentionedJid: [auteurMsg],
-            forwardedNewsletterMessageInfo: {
-                newsletterJid: "120363285388090068@newsletter",
-                newsletterName: "BWM-XMD",
-                serverMessageId: Math.floor(100000 + Math.random() * 900000)
-            }
-        };
-
         // Main menu message with your requested format
         const message = `
 ┌─❖ 𓆩 ⚡ 𓆪 ❖─┐
@@ -86,7 +74,6 @@ ${fullCommandList}
         // Send text message only
         await zk.sendMessage(dest, {
             text: message,
-            contextInfo: newsletterContext
-        }, { quoted: ms });
+        });
     });
 });

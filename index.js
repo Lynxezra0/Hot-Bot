@@ -30,6 +30,7 @@ const pipeline = promisify(stream.pipeline);
 const herokuAppName = process.env.HEROKU_APP_NAME || "Unknown App Name";
 const PORT = process.env.PORT || 3000;
 const app = express();
+const axios = require("axios");
 let adams;
 
 require("dotenv").config({ path: "./config.env" });
@@ -1510,7 +1511,6 @@ async function main() {
                         }
 
                         const context = {
-                            ms,
                             arg,
                             repondre,
                             superUser,

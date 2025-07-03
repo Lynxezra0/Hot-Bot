@@ -129,12 +129,6 @@ _This menu stays active - you can use it multiple times_`;
                             break;
 
                         case 3:
-                            // Our Channel
-                            await zk.sendMessage(session.dest, {
-                                text: "📢 *Our Official Channel*\n\nJoin our WhatsApp channel for updates:\nwhatsapp.com/channel/0029VaZuGSxEawdxZK9CzM0Y\n\nYugo app by bwm xmd:\ngo.bwmxmd.online",
-                                mentions: [userJid]
-                            }, { quoted: message });
-                            break;
 
                         default:
                             await zk.sendMessage(session.dest, {
@@ -217,9 +211,8 @@ async function handleDownload(type, videoUrl, dest, zk, originalMsg) {
                 contextInfo: {
                     externalAdReply: {
                         title: "Your Audio Download",
-                        body: "BWM XMD Downloader",
                         mediaType: 2,
-                        thumbnailUrl: "https://files.catbox.moe/sd49da.jpg",
+                        thumbnailUrl: null,
                         mediaUrl: downloadUrl,
                         sourceUrl: downloadUrl
                     }
@@ -236,9 +229,8 @@ async function handleDownload(type, videoUrl, dest, zk, originalMsg) {
                 contextInfo: {
                     externalAdReply: {
                         title: "Your Video Download",
-                        body: "BWM XMD Downloader",
                         mediaType: 2,
-                        thumbnailUrl: "https://files.catbox.moe/sd49da.jpg",
+                        thumbnailUrl: null,
                         mediaUrl: downloadUrl,
                         sourceUrl: downloadUrl
                     }

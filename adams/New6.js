@@ -286,7 +286,7 @@ adams({
             
             await zk.sendMessage(dest, {
                 text: responseText
-            }, { quoted: ms });
+            });
         }
 
         // Clean up temp file
