@@ -1,11 +1,6 @@
 const { adams } = require('../Ibrahim/adams');
 const axios = require('axios');
-const fs = require('fs-extra');
-const { mediafireDl } = require("../Ibrahim/Function");
-const conf = require(__dirname + "/../config");
-const ffmpeg = require("fluent-ffmpeg");
 const gis = require('g-i-s');
-const ytSearch = require("yt-search");
 
 // Helper function to extract response from various API formats
 function extractResponse(data) {

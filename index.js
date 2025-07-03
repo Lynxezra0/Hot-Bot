@@ -1002,9 +1002,6 @@ async function main() {
             }
         });
 
-        const googleTTS = require("google-tts-api");
-        const { createContext2 } = require("./Ibrahim/helper2");
-
         const availableApis = [
             "https://bk9.fun/ai/google-thinking?q=",
             "https://bk9.fun/ai/llama?q=",
