@@ -18,32 +18,16 @@ const pino = require("pino");
 const { Boom } = require("@hapi/boom");
 const conf = require("./config");
 const config = require("./config");
-const abu = require("./config");
-const axios = require("axios");
-const moment = require("moment-timezone");
 const fs = require("fs-extra");
 const path = require("path");
-const https = require('https');
-const FileType = require("file-type");
-const { Sticker, createSticker, StickerTypes } = require("wa-sticker-formatter");
 const evt = require("./Ibrahim/adams");
-const rateLimit = new Map();
-const MAX_RATE_LIMIT_ENTRIES = 100000;
-const RATE_LIMIT_WINDOW = 3000;
 const express = require("express");
-const { exec } = require("child_process");
-const http = require("http");
 const zlib = require('zlib');
 const PREFIX = conf.PREFIX;
 const { promisify } = require('util');
 const stream = require('stream');
-const AdmZip = require("adm-zip");
-const { File } = require('megajs');
 const pipeline = promisify(stream.pipeline);
-const more = String.fromCharCode(8206);
 const herokuAppName = process.env.HEROKU_APP_NAME || "Unknown App Name";
-const herokuAppLink = process.env.HEROKU_APP_LINK || `https://dashboard.heroku.com/apps/${herokuAppName}`;
-const botOwner = process.env.NUMERO_OWNER || "Unknown Owner";
 const PORT = process.env.PORT || 3000;
 const app = express();
 let adams;
@@ -178,7 +162,7 @@ class WorkerManager {
             
             // Reset restart attempt counter on successful start
             this.currentRestartAttempt = 0;
-            console.log('✅ Fixer fixed the error successfully');
+            console.log('✅ woker started successfully');
             
         } catch (error) {
             console.error('🚨 Worker start failed:', error);
@@ -254,9 +238,7 @@ app.get('/restart', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`🚀 Running speed: ${PORT}`);
-    console.log(`📊 Checking pong: ${PORT}`);
-    console.log(`🔄 Upspeed: ${PORT}`);
+    console.log(`🚀bot running on PORT: ${PORT}`);
 });
 
 //============================================================================//
