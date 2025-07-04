@@ -31,6 +31,7 @@ adams(
     
     // Simulate network processing delay
     await new Promise(resolve => setTimeout(resolve, Math.floor(80 + Math.random() * 420)));
+    const userName = commandeOptions?.ms?.pushName || "User";
     
     const elapsed = process.hrtime(startTime);
     const responseTime = Math.floor((elapsed[0] * 1000) + (elapsed[1] / 1000000));
@@ -61,13 +62,11 @@ adams(
             `🖥️ Server: Core-${Math.floor(1000 + Math.random() * 9000)}\n` +
             `▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n`,
       contextInfo: {
-        forwardingScore: 999,
-        isForwarded: true,
         forwardedNewsletterMessageInfo: {
           serverMessageId: Math.floor(100000 + Math.random() * 900000)
         }
       }
-    });
+    }, {quoted: ms});
   }
 );
 
@@ -96,39 +95,10 @@ adams(
             `🔋 Maintenance: Auto-Scheduled\n` +
             `▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰▰\n`,
       contextInfo: {
-        forwardingScore: 999,
-        isForwarded: true,
         forwardedNewsletterMessageInfo: {
           serverMessageId: Math.floor(100000 + Math.random() * 900000)
         }
       }
-    });
-  }
-);
-
-// 🎵 Global Tech Audio Command
-adams(
-  { nomCom: "pairaudio", reaction: "🎵", nomFichier: __filename },
-  async (dest, zk, commandeOptions) => {
-    const { ms } = commandeOptions;
-    await zk.sendMessage(dest, {
-      audio: { url: "https://files.catbox.moe/89tvg4.mp3" },
-      mimetype: "audio/mpeg",
-      ptt: true,
-      contextInfo: {
-        forwardingScore: 999,
-        isForwarded: true,
-        forwardedNewsletterMessageInfo: {
-          newsletterJid: NEWSLETTER_INFO.jid,
-          newsletterName: NEWSLETTER_INFO.name,
-          serverMessageId: Math.floor(100000 + Math.random() * 900000)
-        },
-        externalAdReply: {
-          title: "🔊 GLOBAL SOUND SYSTEM",
-          body: `Streaming Worldwide • ${getSystemTime()}`,
-          mediaType: 1
-        }
-      }
-    });
+    }, {quoted: ms});
   }
 );

@@ -55,11 +55,9 @@ adams({
 *📥 DOWNLOAD OPTIONS - Reply with number:*
 
 *1.* 🎵 Download Audio
-*2.* 🎥 Download Video  
-*3.* 📢 Our Channel
+*2.* 🎥 Download Video
 
-_Reply with any number above to proceed_
-_This menu stays active - you can use it multiple times_`;
+_Reply with any number above to proceed_`;
 
         // Send result with numbered options
         const sentMessage = await zk.sendMessage(dest, {

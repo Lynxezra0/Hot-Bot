@@ -8,7 +8,7 @@ const createContext = (userJid, options = {}) => ({
         forwardingScore: 999,
         isForwarded: true,
         businessMessageForwardInfo: {
-            businessOwnerJid: NEWS_LETTER_JID, // Helps add verified feel
+            businessOwnerJid: process.env.WA_CHANEL, // Helps add verified feel
         },
         forwardedNewsletterMessageInfo: {
             newsletterJid: NEWS_LETTER_JID,
